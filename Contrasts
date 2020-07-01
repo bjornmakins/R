@@ -1,0 +1,6 @@
+### Setting up contrasts for ANOVA / Linear model
+
+levels(dat1$hormone_treatment)
+contrastmatrix = cbind(c(-1/4, -1/4, -1/4, -1/4, 1), c(-1/2,-1/2,1/2,1/2,0), c(-1,1,0,0,0), c(0,0,-1,1,0))
+contrasts(dat1$hormone_treatment) = contrastmatrix
+model1 <- aov(plant_height~tray+hormone_treatment, data = dat1)
