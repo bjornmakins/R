@@ -1,0 +1,11 @@
+## Create a data frame
+
+Dat = data.frame(
+Reduction=c(8,12,10,14,2,0,0,-6,0,1,2,-3,-4,2),
+Diet=c("Treatment","Treatment","Treatment","Treatment",
+"Treatment","Treatment","Treatment","Control",
+"Control","Control","Control","Control","Control","Control")
+)
+str(Dat)
+
+## 
