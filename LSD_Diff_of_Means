@@ -1,0 +1,35 @@
+## This code calculates the CI for the differences between group means
+
+a = 3 # Number of groups # patient groups
+b = 30 # Total number of obs per group # patient * num of replicates per patient
+r = 5 # number of replicates per element in group # eg patient replicate
+
+MS.Res.patient.with.group = sum(residuals(Model$`group:patient`)^2) / df.residual(Model$`group:patient`)
+MS.Res.patient.with.group
+
+
+SED = sqrt(MS.Res.patient.with.group*2/b/r)
+SED
+
+LSD = qt(1-.05/2,a*(b-1)) * SED
+LSD
+
+with(dat,tapply(pbm,list(group), mean))
+summary(lm(pbm~group, data = dat))
+
+
+Mu1: mean of pbm Group 1 (control) => from summary above: 5.8366
+Mu2: mean of pbm Group 2 (fatal) => from summary above: 5.8366 - 0.8491 = 4.9875
+Mu3: mean of pbm Group 3 (non-fatal) => from summary above: 5.8366 - 1.2837 = 4.5529
+
+# 95 C.I. for mu1-mu2 
+c(5.8366 - 4.9875- LSD, (5.8366 - 4.9875)+ LSD)
+= 0.06336833, 1.63483167
+
+# 95 C.I. for mu2 - mu3
+c(4.9875 - 4.5529- LSD, (4.9875 - 4.5529) + LSD)
+= -0.3511317,  1.2203317
+
+# 95 C.I for mu1 - mu3
+c(5.8366 - 4.5529- LSD, (5.8366 - 4.5529) + LSD)
+= 0.4979683, 2.0694317
