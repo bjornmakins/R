@@ -8,4 +8,4 @@ Diet=c("Treatment","Treatment","Treatment","Treatment",
 )
 str(Dat)
 
-## 
+## boxplot(log(Income2005)~Educ,data=Income)
