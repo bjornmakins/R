@@ -16,3 +16,7 @@ plot(residuals(M2)~fitted(M2),pch=21,bg="black",
 main="Residuals vs Fitted Values",
 xlab="Fitted Values",ylab="Residuals")
 abline(h=0,col=1,lty=2)
+
+# 
+qqnorm(residuals(M1))
+qqline(residuals(M1))
